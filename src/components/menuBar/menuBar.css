@@ -1,0 +1,16 @@
+.flex-container {
+    display: flex;
+    flex-direction: row;
+    /* margin-left: 3%; */
+    /* margin-right: 3%; */
+    width: 90%;
+    /* background-color: skyblue; */
+    justify-content: space-evenly;
+}
+
+.logo {
+}
+
+* {
+    font-size: 10px;
+}

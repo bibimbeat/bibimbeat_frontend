@@ -1,0 +1,36 @@
+  .dot, .dot:before, .dot:after {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border-radius: 20px;
+    background-color: #34495e;
+  }
+  
+  .dot {
+    /* top: 50%;
+    right: 50%; */
+    /* margin-top: -10px;
+    margin-left: -10px; */
+  }
+  
+  .dot:before, .dot:after {
+    content: "";
+  }
+  
+  .dot:before {
+    right: 25px;
+    transition: right .3s ease-out;
+  }
+  
+  .dot:after {
+    left: 25px;
+    transition: left .3s ease-out;
+  }
+  
+  .dots:hover .dot:before {
+    right: -25px;
+  }
+  
+  .dots:hover .dot:after {
+    left: -25px;
+  }

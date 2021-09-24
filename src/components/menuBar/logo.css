@@ -1,0 +1,8 @@
+.flex-containerLogo{
+    display: flex;
+    flex-direction: row;
+}
+.flex-containerLogo2{
+    display: flex;
+    flex-direction: column;
+}
