@@ -1,3 +1,10 @@
+  .dot {
+    position: relative;
+    top: 80px;
+    right: 15%;
+  }
+  
+  
   .dot, .dot:before, .dot:after {
     position: absolute;
     width: 10px;
@@ -18,19 +25,19 @@
   }
   
   .dot:before {
-    right: 25px;
+    right: 11px;
     transition: right .3s ease-out;
   }
   
   .dot:after {
-    left: 25px;
+    left: 11px;
     transition: left .3s ease-out;
   }
   
   .dots:hover .dot:before {
-    right: -25px;
+    right: -11px;
   }
   
   .dots:hover .dot:after {
-    left: -25px;
+    left: -11px;
   }

@@ -1,22 +1,25 @@
 import './App.css';
-import BibimbeatLogo from './components/menuBar/logo';
-import MainMenu from './components/menuBar/mainMenu';
-import MyMusic from './components/menuBar/myMusic';
-import logo from './components/menuBar/logo';
-import ConnectWallet from './components/menuBar/connectWallet';
-import DotMenu from './components/menuBar/dotMenu';
 import MenuBar from './components/menuBar/menuBar';
+import Banner from './components/banner/banner';
+import Player from './components/player/player';
 // import { useState } from 'react';
 
 function App() {
   return (
-  <div className="center">
-  {/* <BibimbeatLogo />
-  <MainMenu />
-  <MyMusic />
-  <ConnectWallet />
-  <DotMenu /> */}
+  <div>
+
+
+  <div className="menuBar">
   <MenuBar />
+  </div>
+  <div className="banner">
+  <Banner />
+  </div>
+  <div className="player">
+  <Player />
+  </div>
+
+
   </div>
   );
 }

@@ -1,12 +1,16 @@
 import './menuBar.css';
-
+import './mainMenu.css';
 
 function MainMenu() {
     return (
         <div>
-        <div>Home</div>
-        <div>NFT</div>
-        <div>Market</div>
+            <div className="mainMenu">
+
+            <div><span>Home</span></div>
+            <div><span>Mint NFT</span></div>
+            <div><span>Market</span></div>
+
+            </div>
         </div>
     );
 }

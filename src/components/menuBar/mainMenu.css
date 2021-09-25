@@ -1,0 +1,10 @@
+.mainMenu {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 14vw;
+    background-color:green;
+    /* left: 70px; */
+    left: 38%;
+    position: absolute;
+};

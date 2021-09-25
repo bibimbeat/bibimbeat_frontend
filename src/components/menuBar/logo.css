@@ -1,8 +1,40 @@
 .flex-containerLogo{
+    /* display: inline-block; */
     display: flex;
     flex-direction: row;
 }
 .flex-containerLogo2{
     display: flex;
     flex-direction: column;
+    display:block;
+}
+
+#logo {
+    height: 100px;
+    width: 100px;
+    background-color:red;
+    position: relative;
+    top: 30px;
+}
+
+.flex-containerLogo2 > div:first-child{
+    position: relative;
+    top: 50px;
+    /* display: flex;
+    flex-direction: column; */
+    background-color: purple;
+    text-align: center;
+    height: 30px;
+    line-height: 30px;
+}
+
+.flex-containerLogo2 > div:last-child{
+    position: relative;
+    top: 50px;
+    /* display: flex;
+    flex-direction: column; */
+    background-color: rgb(99, 243, 224);
+    text-align: center;
+    height: 30px;
+    line-height: 30px;
 }

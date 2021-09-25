@@ -1,0 +1,17 @@
+#banner {
+    /* width: 300px;
+    height: auto; */
+}
+
+.bannerContainer2 {
+    /* display: flex;
+    flex-direction: row; */
+
+}
+
+.bannerContainer1 {
+    background-color:pink;
+    margin: auto;
+    width: 80%;
+    text-align: center;
+}

@@ -9,11 +9,11 @@ function MenuBar() {
     return (
     <div>
         <div className="flex-container">
-        <div className="logo"><BibimbeatLogo /></div>
-        <div className="mainMenu"><MainMenu /></div>
-        <div className="myMusic"><MyMusic /></div>
-        <div className="connectWallet"><ConnectWallet /></div>
-        <div classNAme="dotMenu"><DotMenu /></div>        
+            <div className="logo"><BibimbeatLogo /></div>
+            <div className="mainMenu"><MainMenu /></div>
+            {/* <div className="myMusic"></div> */}
+            <div className="connectWallet"><MyMusic /><ConnectWallet /></div>
+            <div classNAme="dotMenu"><DotMenu /></div>        
         </div>
 
     </div>
