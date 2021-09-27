@@ -2,6 +2,8 @@
     /* display: inline-block; */
     display: flex;
     flex-direction: row;
+    position: relative;
+    left: -40px;
 }
 .flex-containerLogo2{
     display: flex;
@@ -11,19 +13,21 @@
 }
 
 #logo {
-    height: 116px;
-    width: 122px;
-    background-color:red;
+    /* height: 116px; */
+    height: 92.8px;
+    width: 97.6px;
+    /* background-color:red; */
     position: relative;
-    top: 30px;
+    top: 43px;
+    right: 20px;
 }
 
 .flex-containerLogo2 > div:first-child{
     position: relative;
-    top: 50px;
+    top: 62px;
     /* display: flex;
     flex-direction: column; */
-    background-color: purple;
+    /* background-color: purple; */
     text-align: center;
     height: 30px;
     line-height: 30px;
@@ -33,10 +37,10 @@
 
 .flex-containerLogo2 > div:last-child{
     position: relative;
-    top: 50px;
+    top: 60px;
     /* display: flex;
     flex-direction: column; */
-    background-color: rgb(99, 243, 224);
+    /* background-color: rgb(99, 243, 224); */
     text-align: center;
     height: 30px;
     line-height: 30px;

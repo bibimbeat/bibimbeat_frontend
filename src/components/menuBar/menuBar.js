@@ -12,8 +12,8 @@ function MenuBar() {
             <div className="logo"><BibimbeatLogo /></div>
             <div className="mainMenu"><MainMenu /></div>
             {/* <div className="myMusic"></div> */}
-            <div className="connectWallet"><MyMusic /><ConnectWallet /></div>
-            <div classNAme="dotMenu"><DotMenu /></div>        
+            <div className="connectWallet"><MyMusic /><ConnectWallet /><DotMenu /></div>
+            <div classNAme="dotMenu"></div>        
         </div>
 
     </div>
