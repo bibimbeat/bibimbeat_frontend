@@ -13,13 +13,16 @@
     color: #000000;
     box-shadow: 0px 3px 6px #07030329;
 }
-.myMusic > div > img {
+#img{
     position: relative;
     bottom: 65px;
     left: 5px;
 }
-.myMusic > div > span {
+#my {
     position: relative;
     bottom: 67px;
     color: #000000;
 }
+
+
+

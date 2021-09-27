@@ -1,13 +1,13 @@
 import './menuBar.css';
 import music from '../images/music.png';
 import './myMusic.css';
-
+import { Route, Link } from 'react-router-dom';
 
 function MyMusic() {
     return (
         <div>
         <div className="myMusic">
-            <div><span>My</span><img src={music}></img></div>
+            <Link to="myMusicList" style={{ textDecoration: 'none' }}><div><span id="my">My</span><img id="img" src={music}></img></div></Link>
         </div>
         </div>
     );

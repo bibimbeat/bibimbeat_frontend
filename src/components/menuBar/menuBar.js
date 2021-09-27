@@ -7,7 +7,7 @@ import './menuBar.css';
 
 function MenuBar() {
     return (
-    <div>
+    <nav>
         <div className="flex-container">
             <div className="logo"><BibimbeatLogo /></div>
             <div className="mainMenu"><MainMenu /></div>
@@ -16,7 +16,7 @@ function MenuBar() {
             <div classNAme="dotMenu"></div>        
         </div>
 
-    </div>
+    </nav>
     );
   }
 
