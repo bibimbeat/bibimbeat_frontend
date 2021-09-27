@@ -1,3 +1,12 @@
-@import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
+.backGround {
+    background-image: url(/home/heda/Music/bibimbeat_frontend/src/components/images/bg.png);
+    width: 100vw;
+    height: 100vh;
+    background-position:center;
+    /* background-size: auto; */
+}
 
-font-family: 'Righteous', cursive;
+.banner {
+    position: relative;
+    top: 48px;
+}

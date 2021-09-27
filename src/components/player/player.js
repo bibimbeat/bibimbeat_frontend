@@ -5,7 +5,7 @@ function Player() {
         <div>
             
 
-        <div>This part should be the music player</div>
+        <div className="musicPlayer">This part should be the music player</div>
 
 
         </div>

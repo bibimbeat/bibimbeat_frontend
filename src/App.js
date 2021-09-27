@@ -9,6 +9,7 @@ function App() {
   <div>
 
 
+  <div className="backGround">
   <div className="menuBar">
   <MenuBar />
   </div>
@@ -17,6 +18,7 @@ function App() {
   </div>
   <div className="player">
   <Player />
+  </div>
   </div>
 
 

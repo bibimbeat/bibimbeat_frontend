@@ -11,14 +11,17 @@ function Banner() {
         
         <div className="bannerContainer1">
             <div className="bannerContainer2">
-            <span><img src={arrowLeft}></img></span>
+            <span className="arrowLeft"><img src={arrowLeft}></img></span>
             <span><img id="banner" src={bannerImage}></img></span>
-            <span><img src={arrowRight}></img></span>
+            <span className="arrowRight"><img src={arrowRight}></img></span>
             </div>
 
-            <div>Lamda Minted his first NFTs</div>
-            <div>Lamda - Living as a Kopino</div>
-            <img src={play}></img>
+            <div className="title">Lamda Minted his first NFTs</div>
+            <div className="songPlay">
+            <div className="song">Lamda - Living as a Kopino</div>
+            <img className="play"src={play}></img>
+
+            </div>
         </div>
 
         </div>
