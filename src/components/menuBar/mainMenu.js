@@ -12,9 +12,9 @@ function MainMenu() {
             <div><span>Mint NFT</span></div>
             <div><span>Market</span></div> */}
 
-            <Link className="link" style={{ textDecoration: 'none' }}to="/"><span>Home</span></Link>
-            <Link className="link" style={{ textDecoration: 'none' }}to="/mintNFT"><span>Mint NFT</span></Link>
-            <Link className="link" style={{ textDecoration: 'none' }}to="/market"><span>Market</span></Link>
+            <Link className="link" style={{ textDecoration: 'none', backgroundColor: 'red', height:'0px' }}to="/"><span>Home</span></Link>
+            <Link className="link" style={{ textDecoration: 'none',  height:'0px' }}to="/mintNFT"><span>Mint NFT</span></Link>
+            <Link className="link" style={{ textDecoration: 'none',  height:'0px' }}to="/market"><span>Market</span></Link>
 
             </div>
         </div>
