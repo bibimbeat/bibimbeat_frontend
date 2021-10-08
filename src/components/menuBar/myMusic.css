@@ -1,0 +1,28 @@
+.myMusic{
+    /* background-color: rgb(251, 249, 91); */
+    width: 50px;
+    border-radius: 25px;
+    background: #f0ecee;
+    padding-left: 10px;
+    padding-right: 5px;
+    width: 49px;
+    height: 30px;
+    position: relative;
+    top: 68px;
+    left: -12px;
+    color: #000000;
+    box-shadow: 0px 3px 6px #07030329;
+}
+#img{
+    position: relative;
+    bottom: 65px;
+    left: 5px;
+}
+#my {
+    position: relative;
+    bottom: 67px;
+    color: #000000;
+}
+
+
+

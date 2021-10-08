@@ -1,0 +1,22 @@
+.flex-container {
+    display: flex;
+    flex-direction: row;
+    margin: auto;
+    width: 95%;
+    /* background-color: skyblue; */
+    /* justify-content: space-evenly; */
+    /* justify-content: space-between; */
+    justify-content: space-around;
+    /* justify-content: center; */
+    height: 164px;
+    line-height: 164px;
+}
+
+.myMusic {
+    /* position: relative; */
+}
+
+.connectWallet {
+    display: flex;
+    flex-direction: row;
+}

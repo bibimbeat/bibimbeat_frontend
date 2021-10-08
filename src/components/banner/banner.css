@@ -1,0 +1,51 @@
+#banner {
+    /* width: 300px;
+    height: auto; */
+}
+
+.bannerContainer2 {
+    /* display: flex;
+    flex-direction: row; */
+
+}
+
+.bannerContainer1 {
+    /* background-color:pink; */
+    margin: auto;
+    width: 100%;
+    text-align: center;
+}
+
+.arrowLeft,
+.arrowRight {
+    position: relative;
+    bottom: 190px;
+}
+
+.arrowLeft {
+    right: 30px;
+}
+
+.arrowRight {
+    left: 30px;
+}
+
+.title {
+    font-size:50px;
+    text-shadow: 0px 3px 6px #00000029;
+    color: #483333;
+}
+.song {
+    font-size: 24px;
+    text-shadow: 0px 3px 6px #00000029;
+    color: #483333;
+}
+
+.songPlay {
+    position: relative;
+    top: 25px;
+}
+.play {
+    position: relative;
+    top: 15px;
+}

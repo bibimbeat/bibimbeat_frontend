@@ -1,0 +1,31 @@
+.connectWallet{
+    /* position: relative; */
+    /* left: 50px; */
+    /* background-color: red; */
+    width: auto;
+    /* height: 30px;
+    line-height: 30px; */
+    left: 23%;
+    position: relative;
+    font-family: 'Roboto', sans-serif;
+}
+
+
+#connectWallet{
+    border-radius: 25px;
+    box-shadow: 0px 3px 6px #07030329;
+    background: #ffb0bc;
+    padding-left: 10px;
+    padding-right: 5px;
+    width: 115px;
+    height: 30px;
+    position: relative;
+    top: 68px;
+    left: 10px;
+}
+#connectWallet > span {
+    position: relative;
+    bottom: 67px;
+    color: #FFFFFF;
+    font-style: italic;
+}
