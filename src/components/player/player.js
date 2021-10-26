@@ -45,11 +45,9 @@ function Player() {
         const prevValue = isPlaying;
         setIsPlaying(!prevValue); // isPlaying = false, prevValue = true
         if (!prevValue) { // if prevValue = false
-            console.log("play!");
             audioPlayer.current.play();
             animationRef.current = requestAnimationFrame(whilePlaying);
         } else {
-            console.log("pause!");
             console.log(audioPlayer.current);
             audioPlayer.current.pause();
             cancelAnimationFrame(animationRef.current);

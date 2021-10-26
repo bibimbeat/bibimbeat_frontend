@@ -10,16 +10,11 @@ function ConnectWallet() {
         return address.slice(0, 6) + "..." + address.slice(address.length - 4, address.length);
     }
 
-    const connectWallet = async () => {        
-        console.log("HI")
+    const connectWallet = async () => {
         if (window.ethereum) {
-            console.log("HI2")
             const provider = new ethers.providers.Web3Provider(window.ethereum);
-            console.log("Hi3")
             const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
-            console.log("hi4");
             const network = await provider.getNetwork();
-            console.log(network.chainId);
             if (network.chainId !== 4) {
                 setButtonText("Wrong Network");
                 await window.ethereum.request({
@@ -49,13 +44,11 @@ function ConnectWallet() {
             }
         }
         window.ethereum.on('chainChanged', async (chainId) => {
-            // console.log("chainID: " + chainId);
             if (chainId !== "0x4") {
                 setButtonText("Wrong Network");
             }
             else {
                 const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
-                console.log(accounts);
                 sessionStorage.setItem('currentAccount', accounts[0]);
                 setButtonText(createShortAddress(accounts[0]));
             }

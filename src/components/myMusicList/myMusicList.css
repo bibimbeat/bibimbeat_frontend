@@ -95,6 +95,10 @@
     font-weight: bold;
 }
 
+img {
+    border-radius: 15%;
+}
+
 .img .amount {
     padding-bottom: 0.5em;
     align-items: center;
@@ -104,6 +108,16 @@
 
 .amount {
     position: relative;
+    bottom: 215px;
+    left: 230px;
+    width: 2.2em;
+    height: 2.2em;
+    background: white 0% 0% no-repeat padding-box;
+    box-shadow: 2px 3px 6px #00000029;
+    border-radius: 50%;
+    opacity: 1;
+    color: black;
+    font-size: 15px;
 }
 
 .tokenInfo {
@@ -136,7 +150,6 @@
     position: relative;
     left: 56px;
     bottom: 20px;
-
     margin-top: 38px;
     /* margin-left: 105px; */
     width: 140px;

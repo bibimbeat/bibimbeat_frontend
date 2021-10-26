@@ -41,19 +41,25 @@ function MintNFT() {
   }
 
   const UploadImage = (e) => {
-    console.log(e.target.files[0]);
-    setImageName(e.target.files[0].name);
-    // let reader = new FileReader();
-    // reader.readAsDataURL(e.target.files[0]);
-    // reader.onloadend = function () {
+    const type = e.target.files[0].type;
+    if (!type.startsWith("image")) {
+      window.alert("please choose correct data type")
+    }
+    else {
+      setImageName(e.target.files[0].name);
       setImage(e.target.files[0]);
-    // }
+    }
   }
 
   const UploadMusic = (e) => {
-    console.log(e.target.files[0]);
-    setSongName(e.target.files[0].name)
-    setSong(e.target.files[0]);
+    const type = e.target.files[0].type;
+    if (!type.startsWith("audio")) {
+      window.alert("please choose correct data type")
+    }
+    else {
+      setSongName(e.target.files[0].name)
+      setSong(e.target.files[0]);
+    }
   }
 
   const SubmitForm = async (e) => {
@@ -69,14 +75,14 @@ function MintNFT() {
       setIsMintButtonClicked(false);
     }
     else {
-      if (!Title || !Artist || !Genre || !Description || !Amount || !Image || !Song) {
+      if (!Title || !Artist || !Genre || !Description || !Amount || (Image === imageUpload) || !Song) {
         let message = "please fill out: ";
         if (!Title) message += "\nTitle";
         if (!Artist) message += ", Artist";
         if (!Genre) message += ", Genre";
         if (!Description) message += ", Description";
         if (!Amount) message += ", Amount";
-        if (!Image) message += ", Image";
+        if (Image === imageUpload) message += ", Image";
         if (!Song) message += ", Song";
         window.alert(message);
         setIsMintButtonClicked(false);
@@ -88,15 +94,11 @@ function MintNFT() {
 
         // post music source file to the server
         let ipfsImage, ipfsMusic;
-        console.log("pinning music...");
         const musicFormData = new FormData();
         musicFormData.append("music", Song);
-        console.log("pinning album cover...");
         // post image file to the server
         const imageFormData = new FormData();
         imageFormData.append("image", Image);
-        console.log(Song);
-        console.log(Image);
 
         await axios.all([
           axios.post(ImagePostUrl, imageFormData, {
@@ -112,11 +114,7 @@ function MintNFT() {
         ]).then(axios.spread((resImage, resMusic) => {
           ipfsImage = "ipfs://" + resImage.data;
           ipfsMusic = "ipfs://" + resMusic.data;
-          console.log("album and music completed!");
         }));
-
-        console.log(ipfsImage);
-        console.log(ipfsMusic);
 
         const signer = await provider.getSigner();
         const creatorAddress = await signer.getAddress();

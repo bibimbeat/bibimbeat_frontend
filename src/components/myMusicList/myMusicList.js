@@ -40,6 +40,8 @@ function MyMusicList() {
     const [Price, setPrice] = useState();
     const [AmountToSell, setAmountToSell] = useState();
 
+    const [IsDataRead, setIsDataRead] = useState(false);
+
     const putSongInfo = (i) => {
         setSelectedTokenID(TokenIDs[i]);
         setSelectedAmount(Amounts[i]);
@@ -51,7 +53,6 @@ function MyMusicList() {
         setSelectedImage(Images[i]);
         setSelectedSong(Songs[i]);
         setSelectedCreatorAddress(CreatorAddresses[i]);
-        console.log(CreatorAddresses[i]);
     }
 
     const clickPlayButton = () => {
@@ -91,12 +92,10 @@ function MyMusicList() {
                     const tokenLength = parseInt(tokenLengthHex._hex);
                     const addressArray = Array(tokenLength).fill(address);
                     const tokenArray = [...Array(tokenLength)].map((_, i) => i + 1);
-                    console.log("address Array : " + addressArray);
-                    console.log("token Array : " + tokenArray);
-    
+
                     let tokenIDList = [];
                     let tokenAmountList = [];
-                    
+
                     (await musicFactory.balanceOfBatch(addressArray, tokenArray)).map((res, tokenID) => {
                         res = parseInt(res._hex);
                         if (res !== 0) {
@@ -105,23 +104,13 @@ function MyMusicList() {
                         }
                         return res;
                     });
-                    console.log(tokenAmountList);
-    
+
                     setTokenIDs(tokenIDList);
                     setAmounts(tokenAmountList);
 
-                    // const promises = tokenIDList.map((i) => {
-                    //     console.log(i);
-                    // });
-                    // const newPromises = await Promise.all(promises);
-                    
-                    // console.log("newPromises : " + newPromises);
-    
                     await tokenIDList.reduce(async (prevPromise, res, index) => {
-                        // await prevPromise;
-                        console.log("res1: " + res);
+                        await prevPromise;
                         const uri = await musicFactory.getTokenURI(res);
-                        console.log("res2: " + res);
                         var hex = uri.toString();
                         var str = "";
                         for (var n = 2; n < hex.length; n += 2) {
@@ -129,10 +118,11 @@ function MyMusicList() {
                         }
                         const gatewayUri = getGatewayAddress(str);
                         const result = await axios.get(gatewayUri);
+
                         const metadata = result.data;
                         const image_url = getGatewayAddress(subIPFS(metadata.image));
                         const music_url = getGatewayAddress(subIPFS(metadata.animation_url));
-                        
+
                         // adds metadata
                         setTitles(prevArr => [...prevArr, metadata.name]);
                         setArtists(prevArr => [...prevArr, metadata.artist]);
@@ -142,7 +132,7 @@ function MyMusicList() {
                         setImages(prevArr => [...prevArr, image_url]);
                         setSongs(prevArr => [...prevArr, music_url]);
                         setCreatorAddresses(prevArr => [...prevArr, metadata.creatorAddress]);
-    
+
                         if (index === 0) { // adds initial data
                             setSelectedTokenID(tokenIDList[0]);
                             setSelectedAmount(tokenAmountList[0]);
@@ -156,13 +146,14 @@ function MyMusicList() {
                             setSelectedCreatorAddress(metadata.creatorAddress);
                         }
                     }, Promise.resolve());
+                    setIsDataRead(true);
                 }
             }
         }
 
         renderNFTList();
         window.ethereum.on('accountsChanged', () => {
-            console.log("account changed!");
+            setIsDataRead(false);
             renderNFTList();
         });
     }, []);
@@ -204,8 +195,7 @@ function MyMusicList() {
     }
 
     const putPrice = (e) => {
-        console.log(e.target.value)
-        if (e.target.value) {   
+        if (e.target.value) {
             const price = ethers.utils.parseEther(e.target.value); // * 18
             setPrice(price);
         }
@@ -215,101 +205,118 @@ function MyMusicList() {
     }
 
     const putAmountToSell = (e) => {
-        setAmountToSell(e.target.value);
+        if (e.target.value > SelectedAmount) {
+            window.alert("the amount you want to sell exceeds total amount of NFT. Please Try again.")
+            e.target.value = SelectedAmount;
+            setAmountToSell(e.target.value);
+        }
+        else {
+            setAmountToSell(e.target.value);
+        }
+        
+    }
+    if (IsDataRead) {
+        return (
+            <article>
+                <section>
+                    <div className="container">
+                        <div className="musicDescription">
+                            <div className="imgGrid">
+                                <img src={SelectedImage} alt={SelectedImage} width="200" /><div className="amount">x {SelectedAmount}</div>
+
+                            </div>
+                            <div className="firstRow">
+                                <div>
+                                    Title
+                                </div>
+                                <div>
+                                    Price
+                                </div>
+                            </div>
+                            <div className="firstRowInfo">
+                                <div>
+                                    {SelectedTitle}
+                                </div>
+                                <div>
+                                    <input className="priceInput" type="number" onChange={putPrice} min="0" placeholder="Set price"></input> BBB
+                                </div>
+                            </div>
+                            <div className="secondRow">
+                                <div>
+                                    Artist
+                                </div>
+                                <div>
+                                    Genre
+                                </div>
+                                <div>
+                                    ID
+                                </div>
+                            </div>
+                            <div className="secondRowInfo">
+                                <div>
+                                    {SelectedArtist}
+                                </div>
+                                <div>
+                                    {SelectedGenre}
+                                </div>
+                                <div>
+                                    {SelectedTokenID}
+                                </div>
+                            </div>
+                            <div className="thirdRow">
+                                Description
+                            </div>
+                            <div className="thirdRowInfo">
+                                {SelectedDescription}
+                            </div>
+                            <div className="fourthRow">
+                                External URL
+                            </div>
+                            <div className="fourthRowInfo">
+                                {SelectedExternalURL}
+                            </div>
+                            <div className="buttons">
+                                <button className="sell" onClick={() => {
+                                    if (SellButtonText === "Sell")
+                                        clickSellButton();
+                                    else if (SellButtonText === "Approve")
+                                        clickApproveButton();
+                                    else if (SellButtonText === "Add on tradeblock")
+                                        clickAddOnTradeblock();
+                                }}>{SellButtonText}
+                                </button>
+                                <input className="amountInput" type="number" onChange={putAmountToSell} style={{ visibility: IsInputVisible }} max={SelectedAmount} placeholder="Set amount to sell"></input>
+                                <button className="sell" id="play" onClick={clickPlayButton}>play</button>
+                            </div>
+                        </div>
+                        <div>
+                            <div className="musicDescription">
+                                <div className="MTs">
+                                    {
+                                        TokenIDs.map((res, index) => (
+                                            <div key={index}>
+                                                <button style={{ marginBottom: "10px" }} onClick={() => putSongInfo(index)}>{Artists[index]} - {Titles[index]}</button>
+                                            </div>
+                                        ))
+                                    }
+                                </div>
+                                <div className="scrollbar">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </article>
+        );
+    }
+    else {
+        return (
+            <div>
+                
+            </div>
+        )
     }
 
-    return (
-        <article>
-            <section>
-                <div className="container">
-                    <div className="musicDescription">
-                        <div className="imgGrid">
-                            <img src={SelectedImage} alt={SelectedImage} width="200"></img>{SelectedAmount}
-
-                        </div>
-                        <div className="firstRow">
-                            <div>
-                                Title
-                            </div>
-                            <div>
-                                Price
-                            </div>
-                        </div>
-                        <div className="firstRowInfo">
-                            <div>
-                                {SelectedTitle}
-                            </div>
-                            <div>
-                                <input className="priceInput" type="number" onChange={putPrice} min="0" placeholder="Set price"></input> BBB
-                            </div>
-                        </div>
-                        <div className="secondRow">
-                            <div>
-                                Artist
-                            </div>
-                            <div>
-                                Genre
-                            </div>
-                            <div>
-                                ID
-                            </div>
-                        </div>
-                        <div className="secondRowInfo">
-                            <div>
-                                {SelectedArtist}
-                            </div>
-                            <div>
-                                {SelectedGenre}
-                            </div>
-                            <div>
-                                {SelectedTokenID}
-                            </div>
-                        </div>
-                        <div className="thirdRow">
-                            Description
-                        </div>
-                        <div className="thirdRowInfo">
-                            {SelectedDescription}
-                        </div>
-                        <div className="fourthRow">
-                            External URL
-                        </div>
-                        <div className="fourthRowInfo">
-                            {SelectedExternalURL}
-                        </div>
-                        <div className="buttons">
-                            <button className="sell" onClick={() => {
-                                if (SellButtonText === "Sell")
-                                    clickSellButton();
-                                else if (SellButtonText === "Approve")
-                                    clickApproveButton();
-                                else if (SellButtonText === "Add on tradeblock")
-                                    clickAddOnTradeblock();
-                            }}>{SellButtonText}
-                            </button>
-                            <input className="amountInput" type="number" onChange={putAmountToSell} style={{ visibility: IsInputVisible }} placeholder="Set amount to sell"></input>
-                            <button className="sell" id="play" onClick={clickPlayButton}>play</button>
-                        </div>
-                    </div>
-                    <div>
-                        <div className="musicDescription">
-                            <div className="MTs">
-                                {
-                                    TokenIDs.map((res, index) => (
-                                        <div key={index}>
-                                            <button style={{ marginBottom: "10px" }} onClick={() => putSongInfo(index)}>{Artists[index]} - {Titles[index]}</button>
-                                        </div>
-                                    ))
-                                }
-                            </div>
-                            <div className="scrollbar">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </article>
-    );
 }
 
 export default MyMusicList;
