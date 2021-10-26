@@ -207,11 +207,19 @@ function Market() {
         console.log("amount to buy : " + AmountToBuy)
         const AmountToBuyToHex = "0x" + parseInt(AmountToBuy).toString(16);
         console.log("Amount To Buy To Hex : " + AmountToBuyToHex);
-        const amountToApprove = "0x" + (SelectedWeiPrice * AmountToBuyToHex).toString(16);
+        const amountToApprove = SelectedWeiPrice * AmountToBuyToHex;
+        const amountToApproveToHex = "0x"  + amountToApprove.toString(16);
         console.log("amount to approve : " + amountToApprove);
-        const tx = await erc20Minter.approve(addresses.musicMarket, amountToApprove);
-        await tx.wait();
-        window.alert("your token has been approved to smart contract.");
+        const balance = await erc20Minter.balanceOf(account);
+        console.log("current balance: " + balance);
+        if (amountToApprove > balance)
+            window.alert("your token balance is not sufficient! please check and try again.");
+        else {
+            const tx = await erc20Minter.approve(addresses.musicMarket, amountToApproveToHex);
+            await tx.wait();
+            window.alert("your token has been approved to smart contract.");
+        }
+        
         // }
         setBuyButtonText("Purchase");
     }

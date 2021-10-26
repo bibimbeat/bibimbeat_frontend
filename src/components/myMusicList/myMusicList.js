@@ -109,11 +109,19 @@ function MyMusicList() {
     
                     setTokenIDs(tokenIDList);
                     setAmounts(tokenAmountList);
+
+                    // const promises = tokenIDList.map((i) => {
+                    //     console.log(i);
+                    // });
+                    // const newPromises = await Promise.all(promises);
+                    
+                    // console.log("newPromises : " + newPromises);
     
                     await tokenIDList.reduce(async (prevPromise, res, index) => {
-                        await prevPromise;
-    
+                        // await prevPromise;
+                        console.log("res1: " + res);
                         const uri = await musicFactory.getTokenURI(res);
+                        console.log("res2: " + res);
                         var hex = uri.toString();
                         var str = "";
                         for (var n = 2; n < hex.length; n += 2) {
@@ -124,7 +132,7 @@ function MyMusicList() {
                         const metadata = result.data;
                         const image_url = getGatewayAddress(subIPFS(metadata.image));
                         const music_url = getGatewayAddress(subIPFS(metadata.animation_url));
-    
+                        
                         // adds metadata
                         setTitles(prevArr => [...prevArr, metadata.name]);
                         setArtists(prevArr => [...prevArr, metadata.artist]);
@@ -293,6 +301,8 @@ function MyMusicList() {
                                         </div>
                                     ))
                                 }
+                            </div>
+                            <div className="scrollbar">
                             </div>
                         </div>
                     </div>

@@ -13,13 +13,6 @@
     background-color: #34495e;
   }
   
-  .dot {
-    /* top: 50%;
-    right: 50%; */
-    /* margin-top: -10px;
-    margin-left: -10px; */
-  }
-  
   .dot:before, .dot:after {
     content: "";
   }
