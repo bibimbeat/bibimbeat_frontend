@@ -1,5 +1,5 @@
-import './menuBar.css';
-import './dotMenu.css';
+// import './menuBar.css';
+import stylesDotMenu from './dotMenu.module.css';
 
 
 
@@ -8,8 +8,8 @@ function DotMenu() {
 
     return (
         <div>
-            <a href="#" className="dots">
-            <div className="dot"></div>
+            <a href="#" className={stylesDotMenu.dots}>
+            <div className={stylesDotMenu.dot}></div>
             </a>
         </div>
     );

@@ -1,8 +1,8 @@
-.flex-container {
+.flexContainer {
     display: flex;
     flex-direction: row;
     margin: auto;
-    width: 95%;
+    width: 100%;
     /* background-color: skyblue; */
     /* justify-content: space-evenly; */
     /* justify-content: space-between; */
@@ -12,7 +12,22 @@
     line-height: 164px;
 }
 
-.connectWallet {
+.logoMenuBar {
+    width: 9.8%;
+    /* background-color: #fff; */
+}
+
+.mainMenuMenuBar {
+    /* width:10%; */
+    /* background-color: #fff; */
+}
+
+.mainMenuMenuBar{
+    /* background-color:red; */
+}
+
+.connectWalletMenuBar {
     display: flex;
     flex-direction: row;
+    /* background-color: pink; */
 }

@@ -3,6 +3,30 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@600&family=Noto+Sans+Display:wght@700&display=swap');
 
+.container{
+    display: flex;
+    direction: row;
+
+}
+
+.leftBox {
+    margin-right: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;   
+}
+
+
+.rightBox {
+    margin-left: 20px;
+    display: flex;
+align-items: center;
+justify-content: center;
+flex-direction: column;
+position: relative;
+bottom: 15px;
+}
 
 .musicDescription {
     top: 249px;
@@ -11,10 +35,10 @@
     height: 398.4px;
     padding-left: auto;
     padding-top: 20px;
-    background: #FEF9F9 0% 0% no-repeat padding-box;
+    background: var(--yo) 0% 0% no-repeat padding-box;
     box-shadow: 2px 3px 6px #00000029;
     border-radius: 52px;
-    opacity: 0.65;
+    /* opacity: 0.65; */
     display: grid;
     grid-template-columns: repeat(3. 1fr);
     grid-template-rows: repeat(20, 1fr);
@@ -99,10 +123,10 @@
     text-align: center;
     padding-left: auto;
     padding-top: 20px;
-    background: #FEF9F9 0% 0% no-repeat padding-box;
+    background: var(--yo) 0% 0% no-repeat padding-box;
     box-shadow: 2px 3px 6px #00000029;
     border-radius: 52px;
-    opacity: 0.65;
+    /* opacity: 0.65; */
     font-family: 'Inconsolata', sans-serif;
     font-size: smaller;
     display: grid;
@@ -180,6 +204,10 @@
     grid-template-columns: 3fr 1fr 4fr 2fr;
 }
 
+.entry1:hover {
+    background-color: rgb(200, 200, 200);
+}
+
 
 .btn {
     position: relative;
@@ -222,13 +250,29 @@ section>div:last-child {
     margin-left: 20px;
 }
 
-input {
-    width: 197.6px;
-    background: #FFFFFF33 0% 0% no-repeat padding-box;
-    border: 1px solid #70707063;
-    border-radius: 10px;
-    opacity: 1;
+.amountInput {
+    color: rgb(0, 0, 0);
+    font-size: 1.3rem;
+    border-radius: 24px;
+    text-align: center;
+    position: relative;
+    top: 24px;
+    right: 67px;
+    background-color: #fff;
 }
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: rgb(0, 0, 0);
+    opacity: 1; /* Firefox */
+  }
+
+  :-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color:  rgb(0, 0, 0);
+  }
+
+  ::-ms-input-placeholder { /* Microsoft Edge */
+    color:  rgb(0, 0, 0);
+  }
 
 
 .description {
@@ -363,16 +407,51 @@ form input {
 
 .buy {
         position: relative;
-        bottom: -8px;
-        left: 2px;
-    
-        margin-top: 38px;
+        bottom: 15px;
+        left: 65px;
+        /* top: 24px; */
+        /* margin-top: 38px; */
         width: 140px;
         height: 49.6px;
-        background: #944949 0% 0% no-repeat padding-box;
+        background: var(--yo) 0% 0% no-repeat padding-box;
         box-shadow: 2px 3px 6px #00000029;
         border-radius: 52px;
-        opacity: 1;
-        color: white;
+        /* opacity: 1; */
+        color: rgb(0, 0, 0);
         font-size: 20px;
+        transition: background 0.7s ease-in-out;
+}
+
+.buy:hover {
+    background-color:#DC70DA;
+}
+
+
+.play {
+    position: relative;
+    top: 14px;
+    /* left: 2px; */
+
+    /* margin-top: 38px; */
+    width: 140px;
+    height: 49.6px;
+    background: var(--yo) 0% 0% no-repeat padding-box;
+    box-shadow: 2px 3px 6px #00000029;
+    border-radius: 52px;
+    /* opacity: 1; */
+    color: rgb(0, 0, 0);
+    font-size: 20px;
+    transition: background 0.7s ease-in-out;
+}
+
+.play:hover {
+    background-color:#DC70DA;
+}
+
+.loaderContainer {
+    display: flex;
+    width: 100%;
+    height: 300px;
+    align-items: center;
+    justify-content: center;
 }

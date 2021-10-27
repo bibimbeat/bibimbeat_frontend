@@ -1,6 +1,6 @@
 #banner {
-    /* width: 300px;
-    height: auto; */
+    width: 700px;
+    height: auto;
 }
 
 .bannerContainer2 {
@@ -19,7 +19,7 @@
 .arrowLeft,
 .arrowRight {
     position: relative;
-    bottom: 190px;
+    bottom: 160px;
 }
 
 .arrowLeft {
@@ -31,12 +31,12 @@
 }
 
 .title {
-    font-size:50px;
+    font-size:  45px;
     text-shadow: 0px 3px 6px #00000029;
     color: white;
 }
 .song {
-    font-size: 24px;
+    font-size: 20px;
     text-shadow: 0px 3px 6px #00000029;
     color: white;
 }

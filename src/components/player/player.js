@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react'
-import styles from "./audioPlayer.module.css"
+import stylesPlayer from "./audioPlayer.module.css"
 import { FaStepForward, FaStepBackward, FaRegPlayCircle, FaRegPauseCircle, FaRandom, FaVolumeUp } from "react-icons/fa"
-import { ImLoop } from "react-icons/im"
+import { ImLoop } from "react-icons/im";
 import { MdPlaylistPlay } from "react-icons/md"
 import { useSelector } from 'react-redux';
 
@@ -75,44 +75,46 @@ function Player() {
     }
 
     return (
-        <div className={styles.audioPlayer}>
+        <div className={stylesPlayer.centerer}>
+<div className={stylesPlayer.audioPlayer}>
             <audio ref={audioPlayer} src={musicUrl} preload="metadata" onLoadedMetadata={(e) => {
                 setIsPlaying(true);
                 audioPlayer.current.play();
                 animationRef.current = requestAnimationFrame(whilePlaying);
                 setDuration(audioPlayer.current.duration);
                 }}></audio>
-            <button className={styles.forwardBackward} onClick={backThirty}><FaStepBackward /> </button>
-            <button onClick={togglePlayPause} className={styles.playPause}>
+            <button className={stylesPlayer.forwardBackward} onClick={backThirty}><FaStepBackward /> </button>
+            <button onClick={togglePlayPause} className={stylesPlayer.playPause}>
                 {isPlaying ? <FaRegPauseCircle /> : <FaRegPlayCircle />}
             </button>
-            <button className={styles.forwardBackward} onClick={forwardThirty}><FaStepForward /></button>
-            <div className={styles.blank}></div>
-            <button className={styles.forwardBackward}><FaRandom /></button>
-            <button className={styles.forwardBackward}><ImLoop /></button>
-            <button className={styles.forwardBackward}><MdPlaylistPlay /></button>
+            <button className={stylesPlayer.forwardBackward} onClick={forwardThirty}><FaStepForward /></button>
+            <div className={stylesPlayer.blank}></div>
+            <button className={stylesPlayer.forwardBackward}><FaRandom /></button>
+            <button className={stylesPlayer.forwardBackward}><ImLoop /></button>
+            <button className={stylesPlayer.forwardBackward}><MdPlaylistPlay /></button>
 
             {/* current time */}
 
-            <div className={styles.currentTime}>{calculateTime(currentTime)}</div>
+            <div className={stylesPlayer.currentTime}>{calculateTime(currentTime)}</div>
 
             {/*  progress bar */}
 
             <div>
-                <input type="range" className={styles.progressBar} defaultValue="0" ref={progressBar} onChange={changeRange} />
+                <input type="range" className={stylesPlayer.progressBar} defaultValue="0" ref={progressBar} onChange={changeRange} />
             </div>
 
             {/* duration */}
-            <div className={styles.duration}>{isNaN(duration) ? calculateTime(0) : calculateTime(duration)}</div>
-            <button className={styles.forwardBackward}><FaVolumeUp /></button>
+            <div className={stylesPlayer.duration}>{isNaN(duration) ? calculateTime(0) : calculateTime(duration)}</div>
+            <button className={stylesPlayer.forwardBackward}><FaVolumeUp /></button>
             <div>
-                <div className={styles.artistInfo}>
+                <div className={stylesPlayer.artistInfo}>
                     {artist}
                 </div>
-                <div className={styles.titleInfo}>
+                <div className={stylesPlayer.titleInfo}>
                     {title}
                 </div>
             </div>
+        </div>
         </div>
 
 

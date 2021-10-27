@@ -1,4 +1,4 @@
-import "./mintNFT.css";
+import stylesMint from "./mintNFT.module.css";
 import axios from "axios";
 import { useRef, useState } from 'react';
 import imageUpload from "../images/imageUpload.png";
@@ -149,58 +149,58 @@ function MintNFT() {
     <article>
       <section>
         <div>
-          <div className="imageUpload" onClick={ClickImageInput}>
-            <div className="adjust1">
+          <div className={stylesMint.imageUpload} onClick={ClickImageInput}>
+            <div className={stylesMint.adjust1}>
               <img src={imageUpload} alt={imageUpload}></img>
               <div>{ImageName}</div>
             </div>
             <input type="file" ref={imageInputRef} style={{ display: "none" }} onChange={UploadImage} />
           </div>
-          <div className="musicUpload" onClick={ClickMusicInput}>
-            <div className="adjust2">
+          <div className={stylesMint.musicUpload} onClick={ClickMusicInput}>
+            <div className={stylesMint.adjust2}>
               <img src={songUpload} alt={songUpload}></img>
               <div>{SongName}</div>
             </div>
             <input type="file" ref={songInputRef} style={{ display: "none" }} onChange={UploadMusic} />
           </div>
         </div>
-        <div>
-          <div className="mintMetadata">
+        <div className={stylesMint.rightRow}>
+          <div className={stylesMint.mintMetadata}>
             <form>
-              <label className="label">
+              <label className={stylesMint.label}>
                 Title
               </label>
               <input type="text" onChange={PutTitle}>
               </input>
-              <label className="label">
+              <label className={stylesMint.label}>
                 Artist
               </label>
               <input type="text" onChange={PutArtist}>
               </input>
-              <label className="label">
+              <label className={stylesMint.label}>
                 Genre
               </label>
               <input type="text" onChange={PutGenre}>
               </input>
-              <label className="label">
+              <label className={stylesMint.label}>
                 Description
               </label>
-              <input type="text" className="description" onChange={PutDescription}>
+              <input type="text" className={stylesMint.description} onChange={PutDescription}>
               </input>
               <label className="label">
                 External URL
               </label>
               <input type="text" onChange={PutExternalURL}>
               </input>
-              <label className="label">
+              <label className={stylesMint.label}>
                 NFT Amount
               </label>
               <input type="number" onChange={PutAmount}>
               </input>
-              <button className="mintButton" disabled={isMintButtonClicked} onClick={SubmitForm}>Mint NFT</button>
-            </form>
+              </form>
           </div>
-
+          <button className={stylesMint.mintButton} disabled={isMintButtonClicked} onClick={SubmitForm}>Mint NFT</button>
+            
         </div>
       </section>
     </article>

@@ -1,15 +1,27 @@
+* {
+    --yo: #dfdfdf;
+    --button: #dfdfdf;
+    --hover: #ebb8fa;
+}
+
 .imageUpload {
     top: 249px;
 left: 467px;
 width: 344px;
 height: 300px;
-background: #FEF9F9 0% 0% no-repeat padding-box;
+background: var(--yo) 0% 0% no-repeat padding-box;
 box-shadow: 2px 3px 6px #00000029;
 border-radius: 52px;
-opacity: 0.65;
+/* opacity: 0.65; */
 text-align: center;
 /* justify-content: center; */
+transition: background 0.7s ease-in-out;
 }
+
+.imageUpload:hover {
+    background-color: var(--hover);
+}
+
 
 .imageUpload > .adjust1 {
     position: relative;
@@ -21,16 +33,18 @@ text-align: center;
 
 
 .musicUpload {
-    margin-top: 30px;
-    top: 655px;
-left: 466px;
-width: 344px;
+margin-top: 30px;
 height: 140px;
-background: #FEF9F9 0% 0% no-repeat padding-box;
+background: var(--yo) 0% 0% no-repeat padding-box;
 box-shadow: 2px 3px 6px #00000029;
 border-radius: 52px;
-opacity: 0.65;
+/* opacity: 0.65; */
 text-align: center;
+transition: background 0.7s ease-in-out;
+}
+
+.musicUpload:hover {
+    background-color: var(--hover);
 }
 
 .musicUpload > .adjust2 {
@@ -41,28 +55,42 @@ text-align: center;
     margin-top: 5px;
 }
 
-
+.rightRow {
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
 .mintMetadata {
     top: 249px;
     left: 1023px;
     width: 344px;
     height: 398.4px;
-    background: #FEF9F9 0% 0% no-repeat padding-box;
+    background: var(--yo) 0% 0% no-repeat padding-box;
     box-shadow: 2px 3px 6px #00000029;
     border-radius: 52px;
-    opacity: 0.65;
+    transition: background 0.7s ease-in-out;
+    /* opacity: 0.65; */
 }
+.mintMetadata:hover {
+    background-color: var(--hover);
+}
+
 .mintButton {
-    margin-top: 38px;
+    margin-top: 33px;
     /* margin-left: 105px; */
     width: 140px;
     height: 49.6px;
-    background: #944949 0% 0% no-repeat padding-box;
+    background: var(--button) 0% 0% no-repeat padding-box;
     box-shadow: 2px 3px 6px #00000029;
     border-radius: 52px;
-    opacity: 1;
-    color: white;
+    /* opacity: 1; */
+    color: rgb(0, 0, 0);
     font-size: 23px;
+    transition: background 0.7s ease-in-out;
+}
+.mintButton:hover {
+    background-color: #05F2DB;
 }
 
 section {
@@ -86,7 +114,7 @@ input {
     background: #FFFFFF33 0% 0% no-repeat padding-box;
 border: 1px solid #70707063;
 border-radius: 10px;
-opacity: 1;
+/* opacity: 1; */
 }
 
 input[type=text]  {

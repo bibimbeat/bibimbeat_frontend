@@ -1,7 +1,7 @@
   .dot {
     position: relative;
     top: 78px;
-    right: -30%;
+    margin-left: 32px;
   }
   
   
@@ -10,7 +10,7 @@
     width: 10px;
     height: 10px;
     border-radius: 20px;
-    background-color: #34495e;
+    background-color: #3B0273;
   }
   
   .dot:before, .dot:after {

@@ -4,12 +4,12 @@ import MusicFactory from '../../abi/MusicFactory.json';
 import MusicMarket from '../../abi/MusicMarket.json';
 import addresses from '../../environment/ContractAddress.json';
 import axios from 'axios';
-import './myMusicList.css';
+import stylesMyMusicList from './myMusicList.module.css';
 import { useDispatch } from 'react-redux';
 import { onChangeMusic } from './../../redux/modules/playButton';
+import Loader from '../loader/loader';
 
 function MyMusicList() {
-
     const dispatch = useDispatch();
 
     const [Images, setImages] = useState([]);
@@ -219,13 +219,14 @@ function MyMusicList() {
         return (
             <article>
                 <section>
-                    <div className="container">
-                        <div className="musicDescription">
-                            <div className="imgGrid">
-                                <img src={SelectedImage} alt={SelectedImage} width="200" /><div className="amount">x {SelectedAmount}</div>
 
+                    <div className={stylesMyMusicList.container}>
+                        <div className={stylesMyMusicList.musicDescription}>
+                            <div className={stylesMyMusicList.imgGrid}>
+                                <img src={SelectedImage} alt={SelectedImage} width="200"></img>{SelectedAmount}
+    
                             </div>
-                            <div className="firstRow">
+                            <div className={stylesMyMusicList.firstRow}>
                                 <div>
                                     Title
                                 </div>
@@ -233,15 +234,15 @@ function MyMusicList() {
                                     Price
                                 </div>
                             </div>
-                            <div className="firstRowInfo">
+                            <div className={stylesMyMusicList.firstRowInfo}>
                                 <div>
                                     {SelectedTitle}
                                 </div>
                                 <div>
-                                    <input className="priceInput" type="number" onChange={putPrice} min="0" placeholder="Set price"></input> BBB
+                                    <input className={stylesMyMusicList.priceInput} type="number" onChange={putPrice} min="0" placeholder="Set price"></input> BBB
                                 </div>
                             </div>
-                            <div className="secondRow">
+                            <div className={stylesMyMusicList.secondRow}>
                                 <div>
                                     Artist
                                 </div>
@@ -252,7 +253,7 @@ function MyMusicList() {
                                     ID
                                 </div>
                             </div>
-                            <div className="secondRowInfo">
+                            <div className={stylesMyMusicList.secondRowInfo}>
                                 <div>
                                     {SelectedArtist}
                                 </div>
@@ -263,20 +264,20 @@ function MyMusicList() {
                                     {SelectedTokenID}
                                 </div>
                             </div>
-                            <div className="thirdRow">
+                            <div className={stylesMyMusicList.thirdRow}>
                                 Description
                             </div>
-                            <div className="thirdRowInfo">
+                            <div className={stylesMyMusicList.thirdRowInfo}>
                                 {SelectedDescription}
                             </div>
-                            <div className="fourthRow">
+                            <div className={stylesMyMusicList.fourthRow}>
                                 External URL
                             </div>
-                            <div className="fourthRowInfo">
+                            <div className={stylesMyMusicList.fourthRowInfo}>
                                 {SelectedExternalURL}
                             </div>
-                            <div className="buttons">
-                                <button className="sell" onClick={() => {
+                            <div className={stylesMyMusicList.buttons}>
+                                <button className={stylesMyMusicList.sell} onClick={() => {
                                     if (SellButtonText === "Sell")
                                         clickSellButton();
                                     else if (SellButtonText === "Approve")
@@ -285,13 +286,14 @@ function MyMusicList() {
                                         clickAddOnTradeblock();
                                 }}>{SellButtonText}
                                 </button>
-                                <input className="amountInput" type="number" onChange={putAmountToSell} style={{ visibility: IsInputVisible }} max={SelectedAmount} placeholder="Set amount to sell"></input>
-                                <button className="sell" id="play" onClick={clickPlayButton}>play</button>
+
+                                <input className={stylesMyMusicList.amountInput} type="number" onChange={putAmountToSell} style={{ visibility: IsInputVisible }} placeholder="Set amount to sell"></input>
+                                <button className={stylesMyMusicList.sell} id="play" onClick={clickPlayButton}>play</button>
                             </div>
                         </div>
                         <div>
-                            <div className="musicDescription">
-                                <div className="MTs">
+                            <div className={stylesMyMusicList.musicDescription}>
+                                <div className={stylesMyMusicList.MTs}>
                                     {
                                         TokenIDs.map((res, index) => (
                                             <div key={index}>
@@ -299,8 +301,6 @@ function MyMusicList() {
                                             </div>
                                         ))
                                     }
-                                </div>
-                                <div className="scrollbar">
                                 </div>
                             </div>
                         </div>
@@ -310,13 +310,13 @@ function MyMusicList() {
         );
     }
     else {
-        return (
-            <div>
-                
-            </div>
+
+        return ( 
+            <div className={stylesMyMusicList.loaderContainer}>
+            <Loader />
+        </div>
         )
     }
-
 }
 
 export default MyMusicList;

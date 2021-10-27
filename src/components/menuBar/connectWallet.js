@@ -1,5 +1,5 @@
-import './menuBar.css';
-import './connectWallet.css';
+// import './menuBar.css';
+import stylesConnectWallet from './connectWallet.module.css';
 import { useState, useEffect } from 'react';
 import { ethers } from 'ethers';
 
@@ -68,7 +68,7 @@ function ConnectWallet() {
     return (
         <div>
             <div>
-                <div id="connectWallet" onClick={connectWallet}>
+                <div id={stylesConnectWallet.connectWallet} onClick={connectWallet}>
                     <span>{ButtonText}</span>
                 </div>
             </div>
