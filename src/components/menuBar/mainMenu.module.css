@@ -6,8 +6,35 @@
     position: absolute;
     font-family: 'Roboto', sans-serif;
     font-size: 20px;
-    color: white;   
+    /* color: white;    */
     z-index: 3;
     /* height: auto; */
 };
+
+
+/* .home{
+    transition: color 1s;
+}
+.home:focus{
+    color: rgb(239, 176, 250);
+}
+
+.mintNFT{
+    transition: color 1s;
+}
+
+.mintNFT:hover{
+    color: rgb(239, 176, 250);
+
+}
+
+.market{
+    transition: color 1s;
+}
+
+.market:hover{
+    color: rgb(239, 176, 250);
+
+} */
+
 

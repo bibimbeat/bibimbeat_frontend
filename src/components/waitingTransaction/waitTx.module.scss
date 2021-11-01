@@ -4,6 +4,8 @@
     // resize elements spacing
     width: 20%;
     justify-content: space-around;
+    left: 40px;
+    position: relative;
     // align-items: center;
 }
 
@@ -136,5 +138,20 @@
     }
 }
 
+
+@keyframes img {
+    25% {
+        stroke-dashoffset: 125;
+    }
+    50% {
+        stroke-dashoffset: 175;
+    }
+    75% {
+        stroke-dashoffset: 225;
+    }
+    100% {
+        stroke-dashoffset: 275;
+    }
+}
 
 

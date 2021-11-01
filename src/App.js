@@ -7,6 +7,7 @@ import MintNFT from './components/mintNFT/mintNFT';
 import Market from './components/market/market';
 import { Route, Link } from 'react-router-dom';
 import axios from "axios";
+import WalletNotConnected from './components/walletNotConnected/walletNotConnected';
 
 function App() {
   axios.post(

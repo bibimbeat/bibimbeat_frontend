@@ -6,6 +6,7 @@ import songUpload from "../images/uploadSong.png";
 import { ethers } from 'ethers';
 import MusicFactory from '../../abi/MusicFactory.json';
 import addresses from '../../environment/ContractAddress.json';
+import WaitTx from "../waitingTransaction/waitTx";
 
 function MintNFT() {
   const [Title, setTitle] = useState("");
@@ -194,8 +195,9 @@ function MintNFT() {
               <label className={stylesMint.label}>
                 Description
               </label>
-              <input type="text" className={stylesMint.description} onChange={PutDescription}>
-              </input>
+              {/* <input type="text" className={stylesMint.description} onChange={PutDescription}> */}
+              <textarea className={stylesMint.description} onChange={PutDescription}></textarea>
+              {/* </input> */}
               <label className="label">
                 External URL
               </label>
@@ -208,11 +210,10 @@ function MintNFT() {
               </input>
               </form>
           </div>
-          <button className={stylesMint.mintButton} disabled={isMintButtonClicked} onClick={(e) => {
-              
-              SubmitForm();
-            }}>{ButtonText}</button>
-            
+          <button className={stylesMint.mintButton} disabled={isMintButtonClicked} onClick={SubmitForm}>
+            Mint NFT
+          {/* <WaitTx /> */}
+          </button>
         </div>
       </section>
     </article>

@@ -24,10 +24,18 @@
     top: 68px;
     left: 10px;
     cursor: pointer;
+    transition: background 1s ease-in-out;
 }
+
+#connectWallet:hover {
+    background: #fd8aff;
+}
+
+
 #connectWallet > span {
     position: relative;
     bottom: 67px;
+    height: 0px;
     color: #FFFFFF;
     display: block;
     text-align: center;

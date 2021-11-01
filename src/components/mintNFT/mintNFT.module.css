@@ -2,6 +2,7 @@
     --yo: #dfdfdf;
     --button: #dfdfdf;
     --hover: #ebb8fa;
+    --hover2: #efcbfa;
 }
 
 .imageUpload {
@@ -73,7 +74,7 @@ transition: background 0.7s ease-in-out;
     /* opacity: 0.65; */
 }
 .mintMetadata:hover {
-    background-color: var(--hover);
+    background-color:var(--hover2);
 }
 
 .mintButton {
@@ -90,7 +91,7 @@ transition: background 0.7s ease-in-out;
     transition: background 0.7s ease-in-out;
 }
 .mintButton:hover {
-    background-color: #05F2DB;
+    background-color: #d3fdf9;
 }
 
 section {
@@ -144,5 +145,11 @@ form input {
 }
 
 .description {
-    height: 99px;
+    margin-top: 10px;
+    height: 70px;
+    width: 197.6px;
+    border: 1px solid #70707063;
+    border-radius: 10px;
+    background: #FFFFFF33 0% 0% no-repeat padding-box;
+    resize: none;
 }

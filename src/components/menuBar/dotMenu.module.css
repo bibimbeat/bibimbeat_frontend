@@ -1,16 +1,21 @@
+
+  
+  
   .dot {
     position: relative;
     top: 78px;
     margin-left: 32px;
+    
   }
   
   
   .dot, .dot:before, .dot:after {
     position: absolute;
-    width: 10px;
-    height: 10px;
+    width: 13px;
+    height: 13px;
     border-radius: 20px;
     background-color: #3B0273;
+    transition: background 1s ease-in-out;
   }
   
   .dot:before, .dot:after {
@@ -18,19 +23,115 @@
   }
   
   .dot:before {
-    right: 11px;
-    transition: right .3s ease-out;
+    right: 13px;
+    transition: background 1s ease-in-out;
   }
   
   .dot:after {
-    left: 11px;
-    transition: left .3s ease-out;
+    left: 13px;
+    transition: background 1s ease-in-out;
   }
   
+
+  /* .dot:hover {
+    background-color: #ffffff; 
+  }
   .dots:hover .dot:before {
-    right: -11px;
+    background-color: #ffffff;
   }
   
   .dots:hover .dot:after {
-    left: -11px;
-  }
+    background-color: #ffffff;
+  } */
+
+
+
+/* Dropdown menu */
+
+
+/* Dropdown Button */
+.dropbtn {
+  /* border: none; */
+  /* cursor: pointer; */
+  height: 0px;
+}
+
+/* Dropdown button on hover & focus */
+.dropbtn:hover, .dropbtn:focus {
+  /* background-color: #2980B9; */
+  
+}
+
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+  position: relative;
+  display: inline-block;
+  height: 0px;
+}
+
+
+  /* Dropdown Content (Hidden by Default) */
+.dropdownContent {
+  display: none;
+  position: absolute;
+  top: 80px;
+  right: -55px;
+  height: 0px;
+  /* background-color: #f1f1f1; */
+  /* font-size: 10px; */
+  /* background-color: #fff; */
+  z-index: 1;
+}
+
+.dropdownContent img {
+  cursor: pointer;
+}
+
+.dropdownContent a {
+  height: 0px;
+}
+
+
+.discord{
+  position: relative;
+  background-color: #fff;
+  height: 0px;
+}
+.twitter {
+  position: relative;
+  /* bottom: 110px; */
+  height: 0px;
+  background-color: #fff;
+  top: 40px;
+}
+.github {
+  position: relative;
+  /* bottom: 110px; */
+  background-color: #fff;
+  height: 0px;
+  top: 80px;
+}
+.docs {
+  position: relative;
+  /* bottom: 110px; */
+  background-color: #fff;
+  height: 0px;
+  top: 120px;
+}
+
+
+
+/* Change color of dropdown links on hover */
+/* .dropdownContent a:hover {background-color: #ddd} */
+
+/* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
+#show {
+  display:flex;
+  flex-direction: column;
+  height: 0px;
+}
+
+a {
+  /* background-color: #fff; */
+}

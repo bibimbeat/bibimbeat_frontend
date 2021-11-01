@@ -13,6 +13,7 @@
 }
 .centerer {
     width: 100vw;
+    height: 55px;
     background-color:  #d4d4d4;
     display: flex;
     align-items: center;
@@ -37,7 +38,7 @@
 }
 
 .forwardBackward:hover {
-    color: var(--primary)
+    color: var(--primary);
 }
 
 .playPause {
@@ -48,8 +49,12 @@
     display: flex;
     justify-content: center;
     align-items: center;
-
 }
+
+.playPause:hover {
+    color: var(--primary);
+}
+
 
 .currentTime,
 .duration {
@@ -182,8 +187,11 @@
 
 .artistInfo {
     font-size: 0.7em;
+    position: absolute;
+    bottom: 30px;
 }
 
 .titleInfo {
     font-size: 0.7em;
+    position: absolute;
 }

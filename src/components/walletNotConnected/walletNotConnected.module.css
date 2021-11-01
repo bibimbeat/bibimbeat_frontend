@@ -1,0 +1,11 @@
+.container{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.alert {
+    font-size: 30px;
+    color: white;
+}

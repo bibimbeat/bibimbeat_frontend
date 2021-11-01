@@ -271,9 +271,11 @@ function Market() {
                     <div className={stylesMarket.container}>
                         <div className={stylesMarket.leftBox}>
                         <div className={stylesMarket.musicDescription}>
+                        Sales Amount : {SelectedAmount}
                             <div className={stylesMarket.imgGrid}>
+                            
                                 <img src={SelectedImage} alt={SelectedImage} width="200"></img>
-                                {SelectedAmount}
+                                
                             </div>
     
                             <div className={stylesMarket.firstRow}>
@@ -359,7 +361,7 @@ function Market() {
                                 </div>
                                 {
                                     [...Array(OpenTradeCounters.length)].map((n, index) => (
-                                        <div key={index} className={stylesMarket.entry1} onClick={() => putSongInfo(index)}>
+                                        <div tabindex={index} key={index} className={stylesMarket.entry1} onClick={() => putSongInfo(index)}>
                                             <div>
                                                 <p>{Artists8bytes[index]}</p>
                                             </div>

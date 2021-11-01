@@ -3,6 +3,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@600&family=Noto+Sans+Display:wght@700&display=swap');
 
+* {
+    --yo: #dfdfdf;
+    --button: #dfdfdf;
+    --hover: #ebb8fa;
+    --hover2: #efcbfa;
+}
 .container{
     display: flex;
     direction: row;
@@ -206,6 +212,12 @@ bottom: 15px;
 
 .entry1:hover {
     background-color: rgb(200, 200, 200);
+    border-radius: 40px;
+}
+
+.entry1:focus-within{
+    background-color: rgb(200, 200, 200);
+    border-radius: 40px;
 }
 
 
@@ -423,7 +435,7 @@ form input {
 }
 
 .buy:hover {
-    background-color:#DC70DA;
+    background-color:#d3fdf9;
 }
 
 
@@ -445,8 +457,10 @@ form input {
 }
 
 .play:hover {
-    background-color:#DC70DA;
+    background-color:var(--hover2);
 }
+
+
 
 .loaderContainer {
     display: flex;

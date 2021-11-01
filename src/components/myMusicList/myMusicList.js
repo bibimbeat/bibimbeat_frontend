@@ -225,25 +225,24 @@ function MyMusicList() {
             <article>
                 <section>
                     <div className={stylesMyMusicList.container}>
+                    <div className={stylesMyMusicList.leftBox}>
                         <div className={stylesMyMusicList.musicDescription}>
+                        Current Amount : {SelectedAmount}
                             <div className={stylesMyMusicList.imgGrid}>
-                                <img src={SelectedImage} alt={SelectedImage} width="200"></img>{SelectedAmount}
+                                <img src={SelectedImage} alt={SelectedImage} width="200"></img>
     
                             </div>
                             <div className={stylesMyMusicList.firstRow}>
                                 <div>
                                     Title
                                 </div>
-                                <div>
+                                {/* <div>
                                     Price
-                                </div>
+                                </div> */}
                             </div>
                             <div className={stylesMyMusicList.firstRowInfo}>
                                 <div>
                                     {SelectedTitle}
-                                </div>
-                                <div>
-                                    <input className={stylesMyMusicList.priceInput} type="number" onChange={putPrice} min="0" placeholder="Set price"></input> BBB
                                 </div>
                             </div>
                             <div className={stylesMyMusicList.secondRow}>
@@ -280,7 +279,9 @@ function MyMusicList() {
                             <div className={stylesMyMusicList.fourthRowInfo}>
                                 {SelectedExternalURL}
                             </div>
-                            <div className={stylesMyMusicList.buttons}>
+                            
+                        </div>
+                        <div className={stylesMyMusicList.buttons}>
                                 <button className={stylesMyMusicList.sell} onClick={() => {
                                     if (SellButtonText === "Sell")
                                         clickSellButton();
@@ -290,24 +291,31 @@ function MyMusicList() {
                                         clickAddOnTradeblock();
                                 }}>{SellButtonText}
                                 </button>
-
+                                <div style={{ visibility: IsInputVisible }} className={stylesMyMusicList.bbb}>BBB</div>
+                                <input style={{ visibility: IsInputVisible }} className={stylesMyMusicList.priceInput} type="number" min="0" onChange={putPrice} min="0" placeholder="Set price"></input>
                                 <input className={stylesMyMusicList.amountInput} type="number" onChange={putAmountToSell} style={{ visibility: IsInputVisible }} placeholder="Set amount to sell"></input>
-                                <button className={stylesMyMusicList.sell} id="play" onClick={clickPlayButton}>play</button>
-                            </div>
                         </div>
-                        <div>
+                    </div>
+                    <div className={stylesMyMusicList.rightBox}>
                             <div className={stylesMyMusicList.musicDescription}>
+                                Your NFTs
                                 <div className={stylesMyMusicList.MTs}>
                                     {
                                         TokenIDs.map((res, index) => (
                                             <div key={index}>
-                                                <button style={{ marginBottom: "10px" }} onClick={() => putSongInfo(index)}>{Artists[index]} - {Titles[index]}</button>
+                                                <button  className={stylesMyMusicList.entryMine} style={{ marginBottom: "10px" }} onClick={() => putSongInfo(index)}>
+                                                  <div>{Artists[index]}</div> <div><p>-</p></div> <div><p>{Titles[index]}</p></div></button>
                                             </div>
                                         ))
                                     }
                                 </div>
                             </div>
-                        </div>
+                            <div>
+                                 <button className={stylesMyMusicList.sell} className={stylesMyMusicList.play} onClick={clickPlayButton}>Play</button>
+                            </div>
+                    </div>
+                        
+
                     </div>
                 </section>
             </article>

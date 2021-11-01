@@ -7,9 +7,9 @@ function MainMenu() {
     return (
         <div>
             <div className={stylesMainMenu.mainMenu}>
-            <Link className="link" style={{ textDecoration: 'none', backgroundColor: 'red', color: 'white', height:'0px' }}to="/"><span>Home</span></Link>
-            <Link className="link" style={{ textDecoration: 'none', color: 'white', height:'0px' }}to="/mintNFT"><span>Mint NFT</span></Link>
-            <Link className="link" style={{ textDecoration: 'none', color: 'white', height:'0px' }}to="/market"><span>Market</span></Link>
+            <Link style={{ textDecoration: 'none', color: 'white', height:'0px' }}to="/"><span className={stylesMainMenu.home}>Home</span></Link>
+            <Link style={{ textDecoration: 'none', color: 'white', height:'0px' }}to="/mintNFT"><span className={stylesMainMenu.mintNFT}>Mint NFT</span></Link>
+            <Link style={{ textDecoration: 'none', color: 'white', height:'0px' }}to="/market"><span className={stylesMainMenu.market}>Market</span></Link>
 
             </div>
         </div>
