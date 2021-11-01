@@ -6,9 +6,13 @@ import addresses from '../../environment/ContractAddress.json';
 import { ethers } from 'ethers';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import Loader from '../loader/loader';
+import { onChangePreListeningMusic } from './../../redux/modules/playButton';
 
 function Market() {
+    const dispatch = useDispatch();
+
     const [Images, setImages] = useState([]);
     const [Titles, setTitles] = useState([]);
     const [Titles16bytes, setTitles16bytes] = useState([]);
@@ -21,6 +25,7 @@ function Market() {
     const [Amounts, setAmounts] = useState([]);
     const [Prices, setPrices] = useState([]);
     const [WeiPrices, setWeiPrices] = useState([]);
+    const [Songs, setSongs] = useState([]);
 
     const [SelectedImage, setSelectedImage] = useState();
     const [SelectedTitle, setSelectedTitle] = useState();
@@ -33,6 +38,7 @@ function Market() {
     const [SelectedPrice, setSelectedPrice] = useState();
     const [SelectedWeiPrice, setSelectedWeiPrice] = useState();
     const [SelectedTradeCounter, setSelectedTradeCounter] = useState();
+    const [SelectedSong, setSelectedSong] = useState();
 
     const [OpenTradeCounters, setOpenTradeCounters] = useState([]);
 
@@ -51,6 +57,7 @@ function Market() {
         setSelectedDescription(Descriptions[i]);
         setSelectedExternalURL(ExternalURLs[i]);
         setSelectedImage(Images[i]);
+        setSelectedSong(Songs[i]);
         setSelectedTradeCounter(OpenTradeCounters[i]);
         setSelectedPrice(Prices[i]);
         setSelectedWeiPrice(WeiPrices[i]);
@@ -74,6 +81,15 @@ function Market() {
         return str;
     }
 
+    const clickPlayButton = () => {
+        const currentSongData = {
+            musicUrl: SelectedSong,
+            artist: SelectedArtist,
+            title: SelectedTitle
+        }
+        dispatch(onChangePreListeningMusic(currentSongData));
+    }
+
     const initializeStates = () => {
         setTokenIDs([]);
         setAmounts([]);
@@ -92,7 +108,7 @@ function Market() {
             initializeStates();
             const provider = new ethers.providers.Web3Provider(window.ethereum);
             const network = await provider.getNetwork();
-            if (network.chainId === 4) {
+            if (network.chainId === 421611) {
                 const musicMarket = new ethers.Contract(addresses.musicMarket, MusicMarket.abi, provider);
                 const tradeCounterHex = await musicMarket.tradeCounter();
                 const tradeCounter = parseInt(Number(tradeCounterHex._hex), 10);
@@ -112,7 +128,6 @@ function Market() {
                     for (let i = 0; i < openTradeCounters.length; i++) {
 
                         const trade = await musicMarket.trades(openTradeCounters[i]);
-                        const status = getURIStringfromHex(trade.status);
                         const amount = parseInt(Number(trade.amount._hex), 10);
                         const tokenID = parseInt(Number(trade.item._hex), 10);
                         const weiPrice = trade.price._hex;
@@ -126,6 +141,7 @@ function Market() {
                         const result = await axios.get(gatewayUri);
                         const metadata = result.data;
                         const image_url = getGatewayAddress(subIPFS(metadata.image));
+                        const music_url = getGatewayAddress(subIPFS(metadata.animation_url));
 
                         setTokenIDs(prevArr => [...prevArr, tokenID]);
                         setAmounts(prevArr => [...prevArr, amount]);
@@ -152,6 +168,7 @@ function Market() {
                         setDescriptions(prevArr => [...prevArr, metadata.description]);
                         setExternalURLs(prevArr => [...prevArr, metadata.external_url]);
                         setImages(prevArr => [...prevArr, image_url]);
+                        setSongs(prevArr => [...prevArr, music_url]);
                         setPrices(prevArr => [...prevArr, price]);
                         setWeiPrices(prevArr => [...prevArr, weiPrice]);
 
@@ -164,12 +181,12 @@ function Market() {
                             setSelectedDescription(metadata.description);
                             setSelectedExternalURL(metadata.external_url);
                             setSelectedImage(image_url);
+                            setSelectedSong(music_url);
                             setSelectedPrice(price);
                             setSelectedWeiPrice(weiPrice);
                             setSelectedTradeCounter(openTradeCounters[i]);
                         }
                     }
-                    console.log("HH")
                     setIsDataRead(true);
                 }
             }
@@ -188,10 +205,8 @@ function Market() {
         const erc20Minter = new ethers.Contract(addresses.erc20, ERC20Minter.abi, signer);
         const account = await signer.getAddress();
 
-        // const amountToDec = parseInt(Number(amount._hex), 10);
         const allowedAmount = parseInt(Number(await erc20Minter.allowance(account, addresses.musicMarket)), 10);
         console.log("your currently allowed amount is " + allowedAmount + ".");
-        // if (allowedAmount < )
         const AmountToBuyToHex = "0x" + parseInt(AmountToBuy).toString(16);
         const totalAmountToApprove = SelectedWeiPrice * AmountToBuyToHex;
         console.log("the total amount to approve is " + totalAmountToApprove + ".");
@@ -217,15 +232,17 @@ function Market() {
             if (amountToApprove > balance)
                 window.alert("your token balance is not sufficient! please check and try again.");
             else {
-                const tx = await erc20Minter.approve(addresses.musicMarket, amountToApproveToHex);
-                await tx.wait();
-                window.alert("your token has been approved to smart contract.");
-                setBuyButtonText("Purchase");
+                try {
+                    const tx = await erc20Minter.approve(addresses.musicMarket, amountToApproveToHex);
+                    await tx.wait();
+                    window.alert("your token has been approved to smart contract.");
+                    setBuyButtonText("Purchase");
+                }
+                catch (err) {
+                    window.alert(err.data.message)
+                }
             }
         }
-
-
-        // }
     }
 
     const clickPurchaseButton = async () => {
@@ -357,7 +374,7 @@ function Market() {
                                     ))
                                 }
                             </div>
-                            <div><button className={stylesMarket.play}>Play</button></div>
+                            <div><button className={stylesMarket.play} onClick={clickPlayButton}>Play</button></div>
                         </div>
                     </div>
                 </section>

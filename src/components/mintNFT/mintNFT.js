@@ -19,6 +19,7 @@ function MintNFT() {
   const [ImageName, setImageName] = useState("Click to Upload");
   const [Song, setSong] = useState(null);
   const [SongName, setSongName] = useState("Upload Music");
+  const [ButtonText, setButtonText] = useState("Mint NFT"); 
 
   const [isMintButtonClicked, setIsMintButtonClicked] = useState(false);
 
@@ -64,13 +65,12 @@ function MintNFT() {
 
   const SubmitForm = async (e) => {
     setIsMintButtonClicked(true);
-    e.preventDefault();
-
+    // e.preventDefault();
     window.ethereum.request({ method: 'eth_requestAccounts' });
     const provider = new ethers.providers.Web3Provider(window.ethereum);
     const network = await provider.getNetwork();
 
-    if (network.chainId !== 4) {
+    if (network.chainId !== 421611) {  
       alert("Please change your network to rinkeby testnet!");
       setIsMintButtonClicked(false);
     }
@@ -88,59 +88,68 @@ function MintNFT() {
         setIsMintButtonClicked(false);
       }
       else {
-        const JsonPosturl = "http://localhost:4000/pinJsonFileToIPFS";
-        const ImagePostUrl = "http://localhost:4000/pinAlbumCoverToIPFS";
-        const MusicPostUrl = "http://localhost:4000/pinMusicSourceToIPFS";
+        try {
+          setButtonText("Loading...")
 
-        // post music source file to the server
-        let ipfsImage, ipfsMusic;
-        const musicFormData = new FormData();
-        musicFormData.append("music", Song);
-        // post image file to the server
-        const imageFormData = new FormData();
-        imageFormData.append("image", Image);
-
-        await axios.all([
-          axios.post(ImagePostUrl, imageFormData, {
-            headers: {
-              'Content-type': 'multipart/form-data'
-            }
-          }),
-          axios.post(MusicPostUrl, musicFormData, {
-            headers: {
-              'Content-type': 'multipart/form-data'
-            }
-          })
-        ]).then(axios.spread((resImage, resMusic) => {
-          ipfsImage = "ipfs://" + resImage.data;
-          ipfsMusic = "ipfs://" + resMusic.data;
-        }));
-
-        const signer = await provider.getSigner();
-        const creatorAddress = await signer.getAddress();
-
-        const data = {
-          name: Title,
-          artist: Artist,
-          genre: Genre,
-          description: Description,
-          image: ipfsImage,
-          animation_url: ipfsMusic,
-          external_url: ExternalURL,
-          creatorAddress: creatorAddress
-        };
-
-        // post json file to the server
-        const metadataJson = await axios.post(JsonPosturl, data, {
-          headers: { "Content-Type": "application/json" }
-        });
-
-        const metadataUri = metadataJson.data;
-        const musicFactory = new ethers.Contract(addresses.musicFactory, MusicFactory.abi, signer);
-        const tx = await musicFactory.mintMusic(Amount, metadataUri);
-        await tx.wait();
-        window.alert("your NFT has been minted. check your music box!");
-        window.location.reload();
+          const JsonPosturl = "http://localhost:4000/pinJsonFileToIPFS";
+          const ImagePostUrl = "http://localhost:4000/pinAlbumCoverToIPFS";
+          const MusicPostUrl = "http://localhost:4000/pinMusicSourceToIPFS";
+  
+          // post music source file to the server
+          let ipfsImage, ipfsMusic;
+          const musicFormData = new FormData();
+          musicFormData.append("music", Song);
+          // post image file to the server
+          const imageFormData = new FormData();
+          imageFormData.append("image", Image);
+  
+          await axios.all([
+            axios.post(ImagePostUrl, imageFormData, {
+              headers: {
+                'Content-type': 'multipart/form-data'
+              }
+            }),
+            axios.post(MusicPostUrl, musicFormData, {
+              headers: {
+                'Content-type': 'multipart/form-data'
+              }
+            })
+          ]).then(axios.spread((resImage, resMusic) => {
+            ipfsImage = "ipfs://" + resImage.data;
+            ipfsMusic = "ipfs://" + resMusic.data;
+          }));
+  
+          const signer = await provider.getSigner();
+          const creatorAddress = await signer.getAddress();
+  
+          const data = {
+            name: Title,
+            artist: Artist,
+            genre: Genre,
+            description: Description,
+            image: ipfsImage,
+            animation_url: ipfsMusic,
+            external_url: ExternalURL,
+            creatorAddress: creatorAddress
+          };
+  
+          // post json file to the server
+          const metadataJson = await axios.post(JsonPosturl, data, {
+            headers: { "Content-Type": "application/json" }
+          });
+  
+          const metadataUri = metadataJson.data;
+          const musicFactory = new ethers.Contract(addresses.musicFactory, MusicFactory.abi, signer);
+          const tx = await musicFactory.mintMusic(Amount, metadataUri);
+          await tx.wait();
+          window.alert("your NFT has been minted. check your music box!");
+          window.location.reload();
+        }
+        catch (err) {
+          window.alert(err + "\nPlease try again.");
+          window.location.reload();
+        }
+        
       }
     }
   }
@@ -199,7 +208,10 @@ function MintNFT() {
               </input>
               </form>
           </div>
-          <button className={stylesMint.mintButton} disabled={isMintButtonClicked} onClick={SubmitForm}>Mint NFT</button>
+          <button className={stylesMint.mintButton} disabled={isMintButtonClicked} onClick={(e) => {
+              
+              SubmitForm();
+            }}>{ButtonText}</button>
             
         </div>
       </section>

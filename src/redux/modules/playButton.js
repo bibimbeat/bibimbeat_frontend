@@ -3,14 +3,21 @@
 
 // action.type 이 string 으로 추론되지 않고 'counter/INCREASE' 와 같이 실제 문자열 값으로 추론 되도록 해줍니다.
 const CHANGE_MUSIC = 'CHANGE_MUSIC';
-
+const CHANGE_PRELISTENING_MUSIC = "CHANGE_PRELISTENING_MUSIC";
 
 // Action Creator 
 export const onChangeMusic = (currentSongData) => {
-    return {
-        type: CHANGE_MUSIC,
-        payload: currentSongData,
-    }
+  return {
+    type: CHANGE_MUSIC,
+    payload: currentSongData,
+  }
+}
+
+export const onChangePreListeningMusic = (currentSongData) => {
+  return {
+    type: CHANGE_PRELISTENING_MUSIC,
+    payload: currentSongData,
+  }
 }
 
 // 모든 액션 겍체들에 대한 타입을 준비해줍니다.
@@ -35,13 +42,21 @@ const initialState = {
 // 리듀서에서는 state 와 함수의 반환값이 일치하도록 작성하세요.
 // 액션에서는 우리가 방금 만든 CounterAction 을 타입으로 설정합니다.
 function playButtonReducer(state = initialState, action) {
-  
+
   switch (action.type) {
     case CHANGE_MUSIC:
       return {
         musicUrl: action.payload.musicUrl,
         artist: action.payload.artist,
-        title: action.payload.title
+        title: action.payload.title,
+        isPreListening: false
+      }
+    case CHANGE_PRELISTENING_MUSIC:
+      return {
+        musicUrl: action.payload.musicUrl,
+        artist: action.payload.artist,
+        title: action.payload.title,
+        isPreListening: true
       }
     default:
       return state;

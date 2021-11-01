@@ -82,7 +82,7 @@ function MyMusicList() {
             initializeStates();
             const provider = new ethers.providers.Web3Provider(window.ethereum);
             const network = await provider.getNetwork();
-            if (network.chainId === 4) {
+            if (network.chainId === 421611) {
                 const listAccounts = await provider.listAccounts();
                 if (listAccounts.length) {
                     const signer = await provider.getSigner();
@@ -171,17 +171,22 @@ function MyMusicList() {
     }
 
     const clickApproveButton = async () => {
-        const provider = new ethers.providers.Web3Provider(window.ethereum);
-        const signer = await provider.getSigner();
-        const musicFactory = new ethers.Contract(addresses.musicFactory, MusicFactory.abi, signer);
-        const account = await signer.getAddress();
-        if (!(await musicFactory.isApprovedForAll(account, addresses.musicMarket))) {
-            const tx = await musicFactory.setApprovalForAll(addresses.musicMarket, true);
-            await tx.wait();
-            window.alert("your token has been approved to smart contract.");
+        try {
+            const provider = new ethers.providers.Web3Provider(window.ethereum);
+            const signer = await provider.getSigner();
+            const musicFactory = new ethers.Contract(addresses.musicFactory, MusicFactory.abi, signer);
+            const account = await signer.getAddress();
+            if (!(await musicFactory.isApprovedForAll(account, addresses.musicMarket))) {
+                const tx = await musicFactory.setApprovalForAll(addresses.musicMarket, true);
+                await tx.wait();
+                window.alert("your token has been approved to smart contract.");
+            }
+            setSellButtonText("Add on tradeblock");
+            setIsInputVisible("visible");
         }
-        setSellButtonText("Add on tradeblock");
-        setIsInputVisible("visible");
+        catch (err) {
+            console.log(err);
+        }
     }
 
     const clickAddOnTradeblock = async () => {
@@ -219,7 +224,6 @@ function MyMusicList() {
         return (
             <article>
                 <section>
-
                     <div className={stylesMyMusicList.container}>
                         <div className={stylesMyMusicList.musicDescription}>
                             <div className={stylesMyMusicList.imgGrid}>

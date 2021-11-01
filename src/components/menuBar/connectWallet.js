@@ -15,12 +15,13 @@ function ConnectWallet() {
             const provider = new ethers.providers.Web3Provider(window.ethereum);
             const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
             const network = await provider.getNetwork();
-            if (network.chainId !== 4) {
+            if (network.chainId !== 421611) {
                 setButtonText("Wrong Network");
                 await window.ethereum.request({
                     method: 'wallet_switchEthereumChain',
-                    params: [{ chainId: '0x4' }], // chainId must be in hexadecimal numbers
+                    params: [{ chainId: '0x66EEB' }], // chainId must be in hexadecimal numbers
                   });
+                setButtonText(createShortAddress(accounts[0]));
             }
             else {
                 sessionStorage.setItem('currentAccount', accounts[0]);
@@ -33,7 +34,8 @@ function ConnectWallet() {
         const reload = async () => {
             const provider = new ethers.providers.Web3Provider(window.ethereum);
             if (await window.ethereum._metamask.isUnlocked()) {
-                if ((await provider.getNetwork()).chainId !== 4) {
+                if ((await provider.getNetwork()).chainId !== 421611) {
+                    console.log("not arbi1111!");
                     setButtonText("Wrong Network");
                 }
                 else {
@@ -44,7 +46,9 @@ function ConnectWallet() {
             }
         }
         window.ethereum.on('chainChanged', async (chainId) => {
-            if (chainId !== "0x4") {
+            console.log(chainId)
+            if (chainId !== "0x66eeb") {
+                console.log("not arbi!");
                 setButtonText("Wrong Network");
             }
             else {

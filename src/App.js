@@ -6,8 +6,29 @@ import MyMusicList from './components/myMusicList/myMusicList';
 import MintNFT from './components/mintNFT/mintNFT';
 import Market from './components/market/market';
 import { Route, Link } from 'react-router-dom';
+import axios from "axios";
 
 function App() {
+  axios.post(
+    'https://api.thegraph.com/subgraphs/name/uniswap/uniswap-v2', {
+      query: `{
+        uniswapFactories(first: 5) {
+          id
+          pairCount
+          totalVolumeUSD
+          totalVolumeETH
+        }
+        tokens(first: 5) {
+          id
+          symbol
+          name
+          decimals
+        }
+      }`
+    }
+  ).then(res => {
+    console.log(res)
+  })
   return (
     <div>
       <div className="backGround">
