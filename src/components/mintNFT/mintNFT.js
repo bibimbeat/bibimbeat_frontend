@@ -6,7 +6,7 @@ import songUpload from "../images/uploadSong.png";
 import { ethers } from 'ethers';
 import MusicFactory from '../../abi/MusicFactory.json';
 import addresses from '../../environment/ContractAddress.json';
-import WaitTx from "../waitingTransaction/waitTx";
+import { create } from "ipfs-http-client"
 
 function MintNFT() {
   const [Title, setTitle] = useState("");
@@ -33,6 +33,11 @@ function MintNFT() {
 
   const imageInputRef = useRef(null);
   const songInputRef = useRef(null);
+
+  const getGatewayAddress = (cid) => {
+    var gatewayAddress = "https://ipfs.io/ipfs/" + cid
+    return gatewayAddress;
+}
 
   const ClickImageInput = () => {
     imageInputRef.current?.click();
@@ -71,7 +76,7 @@ function MintNFT() {
     const provider = new ethers.providers.Web3Provider(window.ethereum);
     const network = await provider.getNetwork();
 
-    if (network.chainId !== 421611) {  
+    if (network.chainId !== 588) {  
       alert("Please change your network to rinkeby testnet!");
       setIsMintButtonClicked(false);
     }
@@ -97,28 +102,37 @@ function MintNFT() {
           const MusicPostUrl = "http://localhost:4000/pinMusicSourceToIPFS";
   
           // post music source file to the server
+          const ipfs = create("http://127.0.0.1:5001");
+
           let ipfsImage, ipfsMusic;
           const musicFormData = new FormData();
           musicFormData.append("music", Song);
           // post image file to the server
           const imageFormData = new FormData();
           imageFormData.append("image", Image);
-  
-          await axios.all([
-            axios.post(ImagePostUrl, imageFormData, {
-              headers: {
-                'Content-type': 'multipart/form-data'
-              }
-            }),
-            axios.post(MusicPostUrl, musicFormData, {
-              headers: {
-                'Content-type': 'multipart/form-data'
-              }
-            })
-          ]).then(axios.spread((resImage, resMusic) => {
-            ipfsImage = "ipfs://" + resImage.data;
-            ipfsMusic = "ipfs://" + resMusic.data;
-          }));
+
+          // const imageIPFSHash = await ipfs.add(imageFormData); 
+          // console.log(imageIPFSHash);         
+          const imageHash = await ipfs.add(Image);
+          console.log(imageHash);
+          const musicHash = await ipfs.add(Song);
+          console.log(musicHash);
+
+          // await axios.all([
+          //   axios.post(ImagePostUrl, imageFormData, {
+          //     headers: {
+          //       'Content-type': 'multipart/form-data'
+          //     }
+          //   }),
+          //   axios.post(MusicPostUrl, musicFormData, {
+          //     headers: {
+          //       'Content-type': 'multipart/form-data'
+          //     }
+          //   })
+          // ]).then(axios.spread((resImage, resMusic) => {
+          //   ipfsImage = "ipfs://" + resImage.data;
+          //   ipfsMusic = "ipfs://" + resMusic.data;
+          // }));
   
           const signer = await provider.getSigner();
           const creatorAddress = await signer.getAddress();
@@ -128,20 +142,26 @@ function MintNFT() {
             artist: Artist,
             genre: Genre,
             description: Description,
-            image: ipfsImage,
-            animation_url: ipfsMusic,
+            image: "ipfs://" + imageHash.path,
+            animation_url: "ipfs://" + musicHash.path,
             external_url: ExternalURL,
             creatorAddress: creatorAddress
           };
   
           // post json file to the server
-          const metadataJson = await axios.post(JsonPosturl, data, {
-            headers: { "Content-Type": "application/json" }
-          });
-  
-          const metadataUri = metadataJson.data;
+          // const metadataJson = await axios.post(JsonPosturl, data, {
+          //   headers: { "Content-Type": "application/json" }
+          // });
+          
+
+          const jsondata = JSON.stringify(data);
+          const metadataIPFSHash = await ipfs.add(jsondata);
+          console.log(metadataIPFSHash);
+          // const metadataUri = "ipfs://" + metadataJson.data;
+          // console.log("metadata URI : " + metadataUri);
           const musicFactory = new ethers.Contract(addresses.musicFactory, MusicFactory.abi, signer);
-          const tx = await musicFactory.mintMusic(Amount, metadataUri);
+          const tx = await musicFactory.mintMusic(Amount, "ipfs://" + metadataIPFSHash.path);
+          console.log(tx);
           await tx.wait();
           window.alert("your NFT has been minted. check your music box!");
           window.location.reload();

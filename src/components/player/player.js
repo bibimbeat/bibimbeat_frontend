@@ -70,7 +70,6 @@ function Player() {
         progressBar.current.style.setProperty('--seek-before-width', `${progressBar.current.value / duration * 100}%`)
         console.log("progress bar current value : " + progressBar.current.value);
         setCurrentTime(progressBar.current.value);
-
     }
 
     const backThirty = () => {
@@ -92,13 +91,22 @@ function Player() {
                     animationRef.current = requestAnimationFrame(whilePlaying);
                     console.log("isPreListening? : " + isPreListening)
                     if (isPreListening) {
-                        setInterval(function () {
+                        setDuration(5);
+                        progressBar.current.max = 5;
+                        let interval = setInterval(function () {
+                            console.log("interval count")
                             if (audioPlayer.current.currentTime > 5) {
                                 audioPlayer.current.pause();
                                 setIsPlaying(false);
                                 cancelAnimationFrame(animationRef.current);
+                                clearInterval(interval);
                             }
                         });
+                    }
+                    else {
+                        const seconds = Math.floor(audioPlayer.current.duration);
+                        setDuration(seconds);
+                        progressBar.current.max = seconds;
                     }
 
                 }}></audio>

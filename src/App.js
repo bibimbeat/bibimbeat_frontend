@@ -8,24 +8,21 @@ import Market from './components/market/market';
 import { Route, Link } from 'react-router-dom';
 import axios from "axios";
 import WalletNotConnected from './components/walletNotConnected/walletNotConnected';
+import { create } from "ipfs-http-client";
+import { useEffect } from 'react';
 
 function App() {
   axios.post(
-    'https://api.thegraph.com/subgraphs/name/uniswap/uniswap-v2', {
+    'http://127.0.0.1:8000/subgraphs/name/bibimbeat-arbitrum-rinkeby', {
       query: `{
-        uniswapFactories(first: 5) {
+        musicLists (first: 5) {
           id
-          pairCount
-          totalVolumeUSD
-          totalVolumeETH
+          creator
+          amount
+          uri
         }
-        tokens(first: 5) {
-          id
-          symbol
-          name
-          decimals
-        }
-      }`
+      }
+      `
     }
   ).then(res => {
     console.log(res)

@@ -82,7 +82,7 @@ function MyMusicList() {
             initializeStates();
             const provider = new ethers.providers.Web3Provider(window.ethereum);
             const network = await provider.getNetwork();
-            if (network.chainId === 421611) {
+            if (network.chainId === 588) {
                 const listAccounts = await provider.listAccounts();
                 if (listAccounts.length) {
                     const signer = await provider.getSigner();
@@ -116,7 +116,7 @@ function MyMusicList() {
                         for (var n = 2; n < hex.length; n += 2) {
                             str += String.fromCharCode(parseInt(hex.substr(n, 2), 16));
                         }
-                        const gatewayUri = getGatewayAddress(str);
+                        const gatewayUri = getGatewayAddress(subIPFS(str));
                         const result = await axios.get(gatewayUri);
 
                         const metadata = result.data;

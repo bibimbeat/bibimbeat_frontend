@@ -108,7 +108,9 @@ function Market() {
             initializeStates();
             const provider = new ethers.providers.Web3Provider(window.ethereum);
             const network = await provider.getNetwork();
-            if (network.chainId === 421611) {
+            if (network.chainId === 588) {
+            // if (network.chainId === 421611) {
+            // if (network.chainId === 4) {
                 const musicMarket = new ethers.Contract(addresses.musicMarket, MusicMarket.abi, provider);
                 const tradeCounterHex = await musicMarket.tradeCounter();
                 const tradeCounter = parseInt(Number(tradeCounterHex._hex), 10);
@@ -137,7 +139,7 @@ function Market() {
                         const musicFactory = new ethers.Contract(addresses.musicFactory, MusicFactory.abi, provider);
                         const hexUri = await musicFactory.getTokenURI(tokenID);
                         const uri = getURIStringfromHex(hexUri);
-                        const gatewayUri = getGatewayAddress(uri);
+                        const gatewayUri = getGatewayAddress(subIPFS(uri));
                         const result = await axios.get(gatewayUri);
                         const metadata = result.data;
                         const image_url = getGatewayAddress(subIPFS(metadata.image));
