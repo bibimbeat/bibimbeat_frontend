@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/bibimbeat_frontend/static/css/main.116af233.chunk.css",
+    "main.js": "/bibimbeat_frontend/static/js/main.df31e164.chunk.js",
+    "main.js.map": "/bibimbeat_frontend/static/js/main.df31e164.chunk.js.map",
+    "runtime-main.js": "/bibimbeat_frontend/static/js/runtime-main.d9edd85c.js",
+    "runtime-main.js.map": "/bibimbeat_frontend/static/js/runtime-main.d9edd85c.js.map",
+    "static/js/2.073d541c.chunk.js": "/bibimbeat_frontend/static/js/2.073d541c.chunk.js",
+    "static/js/2.073d541c.chunk.js.map": "/bibimbeat_frontend/static/js/2.073d541c.chunk.js.map",
+    "static/js/3.d1de7fde.chunk.js": "/bibimbeat_frontend/static/js/3.d1de7fde.chunk.js",
+    "static/js/3.d1de7fde.chunk.js.map": "/bibimbeat_frontend/static/js/3.d1de7fde.chunk.js.map",
+    "index.html": "/bibimbeat_frontend/index.html",
+    "static/css/main.116af233.chunk.css.map": "/bibimbeat_frontend/static/css/main.116af233.chunk.css.map",
+    "static/js/2.073d541c.chunk.js.LICENSE.txt": "/bibimbeat_frontend/static/js/2.073d541c.chunk.js.LICENSE.txt",
+    "static/media/App.css": "/bibimbeat_frontend/static/media/bg2.abd676bd.jpg",
+    "static/media/logo.b98073bc.png": "/bibimbeat_frontend/static/media/logo.b98073bc.png",
+    "static/media/sample_banner.202dbd74.png": "/bibimbeat_frontend/static/media/sample_banner.202dbd74.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.d9edd85c.js",
+    "static/js/2.073d541c.chunk.js",
+    "static/css/main.116af233.chunk.css",
+    "static/js/main.df31e164.chunk.js"
+  ]
+}
